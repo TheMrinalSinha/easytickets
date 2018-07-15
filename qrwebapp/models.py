@@ -13,10 +13,33 @@ class Passenger(models.Model):
         verbose_name_plural = 'Passanger Details'
 
 class Ticket(models.Model):
-    passanger = models.ForeignKey(Passenger)
+    passanger   = models.ForeignKey(Passenger, on_delete=models.CASCADE)
+    source      = models.CharField('Starting Point', max_length=32)
+    destination = models.CharField('Ending Point', max_length=32)
+    fare        = models.DecimalField('Journey Fare', max_digits=4, decimal_places=2)
+    created_on  = models.DateTimeField('Ticket Time', auto_now_add=True)
+
+    def __str__(self):
+        return self.passanger + '(' + self.source + '→' + self.destination + ')'
+
+    @property
+    def reference(self):
+        return 'TK%05d' % self.pk
+
+class Route(models.Model):
+    source      = models.CharField('Starting Point', max_length=32)
+    destination = models.CharField('Ending Point', max_length=32)
+    fare        = models.DecimalField('Journey Fare', max_digits=4, decimal_places=2)
+
+    def __str__(self):
+        return self.source + '→' + self.destination
+
+    class Meta:
+        verbose_name        = 'Route'
+        verbose_name_plural = 'Routes'
 
 class RazorpayPayment(models.Model):
-    ticket              = models.ForeignKey(Ticket)
+    ticket              = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     razorpay_order_id   = models.CharField('Razorpay Order Id',   max_length=128, null=True, blank=True)
     razorpay_payment_id = models.CharField('Razorpay Payment Id', max_length=128, null=True, blank=True)
     razorpay_signature  = models.CharField('Razorpay Signature',  max_length=2048,null=True, blank=True)
