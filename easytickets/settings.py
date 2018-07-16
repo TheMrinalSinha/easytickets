@@ -1,6 +1,7 @@
 import os, yaml
 
 DEBUG            = True
+SITE_ID          = 1
 BASE_DIR         = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY       = 'its_a_secret_key'
 ROOT_URLCONF     = 'easytickets.urls'
@@ -19,8 +20,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Django Allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
     # CustomApp
     'qrwebapp',
+    'accounts',
 ]
 
 MIDDLEWARE = [
