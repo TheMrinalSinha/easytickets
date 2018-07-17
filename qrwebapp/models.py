@@ -20,7 +20,7 @@ class Ticket(models.Model):
     created_on  = models.DateTimeField('Ticket Time', auto_now_add=True)
 
     def __str__(self):
-        return self.passanger + '(' + self.source + '→' + self.destination + ')'
+        return str(self.passanger) + '(' + self.source + '→' + self.destination + ')'
 
     @property
     def reference(self):
