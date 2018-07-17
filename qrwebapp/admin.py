@@ -39,5 +39,8 @@ class TicketAdmin(ReadOnlyMixin, admin.ModelAdmin):
     list_display = ('reference', 'passanger', 'source', 'destination', 'fare', 'created_on')
     inlines = [TicketRazorPayment]
 
-admin.site.register(Passenger)
+@admin.register(Passenger)
+class PassangerAdmin(ReadOnlyMixin, admin.ModelAdmin):
+    list_display = ('name', 'phone', 'email')
+
 admin.site.register(Route)
