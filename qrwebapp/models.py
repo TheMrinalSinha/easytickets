@@ -32,9 +32,9 @@ class Ticket(models.Model):
         return 'TK%05d' % self.pk
 
 class Route(models.Model):
-    source      = models.CharField('Starting Point', max_length=32, unique=True)
-    destination = models.CharField('Ending Point', max_length=32, unique=True)
-    fare        = models.DecimalField('Journey Fare', max_digits=4, decimal_places=2)
+    source      = models.CharField('Starting Point', max_length=32)
+    destination = models.CharField('Ending Point', max_length=32)
+    fare        = models.DecimalField('Journey Fare', max_digits=5, decimal_places=2)
 
     def __str__(self):
         return self.source + '→' + self.destination
@@ -42,6 +42,7 @@ class Route(models.Model):
     class Meta:
         verbose_name        = 'Route'
         verbose_name_plural = 'Routes'
+        unique_together     = ('source', 'destination')
 
 class RazorpayPayment(models.Model):
     ticket              = models.ForeignKey(Ticket, on_delete=models.CASCADE)
