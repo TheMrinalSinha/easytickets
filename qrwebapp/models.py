@@ -20,7 +20,7 @@ class Ticket(models.Model):
     passanger      = models.ForeignKey(Passenger, on_delete=models.CASCADE)
     source         = models.CharField('Starting Point', max_length=32)
     destination    = models.CharField('Ending Point', max_length=32)
-    fare           = models.DecimalField('Journey Fare', max_digits=4, decimal_places=2)
+    fare           = models.DecimalField('Journey Fare', max_digits=5, decimal_places=2)
     payment_status = models.CharField('Payment Status', choices=PAYMENT_STATUS, default='PENDING', max_length=16)
     created_on     = models.DateTimeField('Ticket Time', auto_now_add=True)
 
