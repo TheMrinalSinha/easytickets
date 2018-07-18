@@ -35,8 +35,9 @@ class TicketRazorPayment(ReadOnlyMixin, admin.TabularInline):
     fields = ('method', 'payment_status', 'captured', 'bank', 'wallet', 'vpa', 'created_at')
 
 @admin.register(Ticket)
-class TicketAdmin(ReadOnlyMixin, admin.ModelAdmin):
-    list_display = ('reference', 'passanger', 'source', 'destination', 'fare', 'created_on')
+class TicketAdmin(admin.ModelAdmin):
+    list_display = ('reference', 'passanger', 'source', 'destination', 'fare', 'payment_status', 'created_on')
+    list_filter  = ('payment_status', 'created_on')
     inlines = [TicketRazorPayment]
 
 @admin.register(Passenger)
