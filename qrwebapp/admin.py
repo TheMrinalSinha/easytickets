@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models        import Passenger, Ticket, Route, RazorpayPayment
+from .models        import Passenger, Ticket, Route, RazorpayPayment, Source, Destination
 
 # Register your models here.
 class ReadOnlyMixin(object):
@@ -43,5 +43,13 @@ class TicketAdmin(admin.ModelAdmin):
 @admin.register(Passenger)
 class PassangerAdmin(ReadOnlyMixin, admin.ModelAdmin):
     list_display = ('name', 'phone', 'email')
+
+@admin.register(Source)
+class SourceAdmin(admin.ModelAdmin):
+    list_display = ['source']
+
+@admin.register(Destination)
+class DestinationAdmin(admin.ModelAdmin):
+    list_display = ['destination']
 
 admin.site.register(Route)

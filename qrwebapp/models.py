@@ -31,9 +31,29 @@ class Ticket(models.Model):
     def reference(self):
         return 'TK%05d' % self.pk
 
-class Route(models.Model):
-    source      = models.CharField('Starting Point', max_length=32)
+class Source(models.Model):
+    source = models.CharField('Starting Point', max_length=32)
+
+    def __str__(self):
+        return self.source
+
+    class Meta:
+        verbose_name        = 'Source'
+        verbose_name_plural = 'Sources'
+
+class Destination(models.Model):
     destination = models.CharField('Ending Point', max_length=32)
+
+    def __str__(self):
+        return self.destination
+
+    class Meta:
+        verbose_name        = 'Destination'
+        verbose_name_plural = 'Destinations'
+
+class Route(models.Model):
+    source      = models.ForeignKey(Source, on_delete=models.CASCADE)
+    destination = models.ForeignKey(Destination, on_delete=models.CASCADE)
     fare        = models.DecimalField('Journey Fare', max_digits=5, decimal_places=2)
 
     def __str__(self):
