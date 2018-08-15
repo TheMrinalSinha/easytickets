@@ -8,7 +8,7 @@ ROOT_URLCONF     = 'easytickets.urls'
 ALLOWED_HOSTS    = ['*']
 WSGI_APPLICATION = 'easytickets.wsgi.application'
 
-if not DEBUG:
+if DEBUG:
     for key, value in yaml.load(open(os.path.join(BASE_DIR, 'config.yml'))).items():
         globals()[key] = value
 
