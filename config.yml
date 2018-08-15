@@ -2,3 +2,8 @@ SECRET_KEY      : 6b5jil(6or7=$)=#_wg%f%^i2vy!dnn4b(^&wuhc)csepoyk))
 RAZORPAY_ID     : rzp_test_db4TC6B2m5POsW
 RAZORPAY_SECRET : rAmwgXf6iZCQ0Up8wiw8Rub5
 RAZORPAY_URL    : https://api.razorpay.com/v1/
+
+# DB SERVER SETUP
+DB_HOSTNAME     : 188.165.149.244
+DB_USERNAME     : piccolo
+DB_PASSWORD     : piccolo

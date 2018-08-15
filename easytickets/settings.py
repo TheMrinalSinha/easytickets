@@ -60,8 +60,12 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'easytickets.db'),
+        'ENGINE'   : 'django.db.backends.postgresql_psycopg2',
+        'NAME'     : 'easyticket',
+        'USER'     : DB_USERNAME,
+        'PASSWORD' : DB_PASSWORD,
+        'HOST'     : DB_HOSTNAME,
+        'PORT'     : '5432'
     }
 }
 
